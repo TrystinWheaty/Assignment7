@@ -1,0 +1,129 @@
+\documentclass{article} 
+
+
+\usepackage{pawlowski}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{indentfirst} 
+
+\title{Assignment 7}
+\author{Trystin Wheatcroft}
+
+\begin{document}
+
+\section{Numerical Derivatives}
+
+\subsection*{Preliminary: Taylor Expansion}
+The Taylor expansion is a method of taking numerical derivatives that takes the form: 
+$$f(x) =\sum_{n=0}^{\infty}f^n(x_0)*(x-x_0)^n/n!$$
+This is an infinite summation of terms that approximates an unknown point in a function using a known point. Using this expansion, we can derive two schemes for numerical differentiation; the Central Differencing scheme (\ref{Central Differencing}) and a Third Order Scheme.
+
+\subsection*{Central Differencing}
+Starting with the Taylor Expansion to the $1^{st}$ order, we can derive an equation for solving the first derivative of a function in two ways. First using a point that is beyond the point we're trying to find $(f(x+h))$ and by using a point behind the point we're trying to find $(f(x-h))$. These two methods are called Forward Differencing (\ref{Forward Differencing}) and Backward Differencing (\ref{Backward Differencing}). They are derived by:
+\begin{align}
+    \label{Forward Differencing}
+    &Forward \nonumber \\
+    f(x+h) &= f(x) + f'(x)*h \nonumber \\
+    f'(x) &= \frac{f(x+h) -f(x)}{h} \\
+    \nonumber \\
+    \label{Backward Differencing}  
+    &Backward \nonumber \\
+    f(x-h) &= f(x) - f'(x)*h \nonumber \\
+    f'(x) &= \frac{f(x) - f(x+h)}{h}
+\end{align}
+By combining these two methods, we get the Central Differencing scheme (\ref{Central Differencing}), which no longer relies on f(x):
+\begin{align}
+    \label{Central Differencing}
+    f'(x) = (f(x+h) - f(x-h)) * 2h
+\end{align}
+
+\subsection*{Third Order Scheme}
+There are also methods that start with the Taylor Series to the $3^{rd}$ order, following similar methods as above, we can derive three-point forward, backward, and central differencing formulas:
+
+\begin{align}
+    \label{3pt Forward Differencing}
+    &Forward \nonumber \\
+    f'(x) &= \frac{-3f(x) +4f(x+h) - f(x+2h)}{2h}+O(h^2)    \\
+    \label{3pt Backward Differencing} 
+    &Backward \nonumber \\
+    f'(x) &= \frac{-f(x+2h) +8f(x+h) - 8f(x-h)+f(x-2h)}{12h}+O(h^4)   \\ 
+    \label{3pt Central Differencing} 
+    &Central \nonumber \\
+    f'(x) &= \frac{f(x-2h)-4f(x-h)+3f(x)}{2h} = O(h^2)
+\end{align}
+
+\newpage
+
+\section{Electric Potential of Many Charges}
+
+\subsection{Summary}
+This assignment was to rework our former electric potential and electric field modeling program to make it work for any number of charges, defined in a given file titled creategrid.py.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{potential.png}
+    \caption{Electric Potential}
+    \label{fig:potential}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{electricfield.png}
+    \caption{Electric Field}
+    \label{fig:field}
+\end{figure}
+
+\newpage
+
+\section{Harmonic Oscillator}
+
+\subsection{Summary}
+When $C^2$ is 0, there is no damping, so the oscillator will oscillate forever without loss of energy \ref{fig:C=0}. When the oscillator is critically damped, The system returns to equilibrium in the shortest possible time without oscillating \ref{fig:critdamp}. When under damped, the motion still oscillates while the amplitude decays \ref{fig:undamp}. When overdamped, the system slowly returns to equilibrium without oscillating \ref{fig:overdamp}.
+
+\begin{figure}[bp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figure 2025-12-03 C0.png}
+    \caption{C=0}
+    \label{fig:C=0}
+\end{figure}
+
+\begin{figure}[bp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figure 2025-12-03 critdamp.png}
+    \caption{Critically Damped}
+    \label{fig:critdamp}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figure 2025-12-04 overdamped.png}
+    \caption{Overdamped}
+    \label{fig:overdamp}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figure 2025-12-04 underdamped.png}
+    \caption{Under damped}
+    \label{fig:undamp}
+\end{figure}
+
+
+\newpage
+\section{Cycling Without Drag}
+
+\subsection{Summary}
+For this section I used Euler's method to solve for the velocity of an ideal cyclist without drag or other degenerative forces.
+
+\begin{figure}[bp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{bicycle.png}
+    \caption{Velocity vs Time}
+    \label{fig:bicycle}
+\end{figure}
+
+
+
+
+\end{document}
